@@ -6,6 +6,8 @@ cluster:
 debug: 'FALSE'
 
 addition: "main"
+regionCompliance: "region-pionex"
+gray: "gray-v1"
 
 gatewayname: "pionex-test-service"
 
