@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{.Values.default.images.name}}-{{.Values.addition}}
+spec:
+  gateways:
+  - {{.Values.default.images.name}}-{{.Values.addition}}
+  hosts:
+  - "ngxgray-test.pionexdev.com"
+  http:
+  - route:
+    - destination:
+        host: {{.Values.default.images.name}}-{{.Values.addition}}
+        subset: {{.Values.default.subnet}}
+        port:
+          number: 80
+      weight: {{.Values.default.weight}}
+    {{- if eq .Values.gray "gray-v2" }}
+    - destination:
+        host: {{.Values.newversion.images.name}}-{{.Values.addition}}
+        subset: {{.Values.newversion.subnet}}
+        port:
+          number: 80
+      weight: {{.Values.newversion.weight}}
+    {{- end }}
