@@ -1,0 +1,19 @@
+---
+# Source: fund-counter-core/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Values.default.images.name}}-{{.Values.default.subnet}}-configmap
+data:
+  {{- if eq .Values.regionCompliance "region-pionex" }}
+  ENV: "test"
+  {{- end }}
+
+  {{- if eq .Values.regionCompliance "region-us" }}
+  ENV: "test_us"
+  {{- end }}
+
+  {{- if eq .Values.regionCompliance "region-picol" }}
+  ENV: "test_picol"
+  {{- end }}
+
