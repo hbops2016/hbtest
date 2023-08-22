@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{.Values.default.images.name}}-{{.Values.default.subnet}}-configmap
+  name: {{.Values.default.images.name}}-{{.Values.addition}}-configmap
 data:
   {{- if eq .Values.regionCompliance "region-pionex" }}
   ENV: "test"
