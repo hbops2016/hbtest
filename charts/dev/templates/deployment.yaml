@@ -22,28 +22,21 @@ spec:
         app.kubernetes.io/name: {{.Values.default.images.name}}-{{.Values.addition}}
     spec:
       containers:
-        - name: {{.Release.Name}}
-          image: {{.Values.default.images.repository}}/{{.Values.default.images.repo}}:{{.Values.default.images.tag}}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          resources:
-            limits:
-              cpu: 100m
-              memory: 100Mi
-            requests:
-              cpu: 100m
-              memory: 100Mi
-          volumeMounts:
-          - mountPath: /usr/share/nginx/html/index.html
-            name: conf
-            readOnly: true
-            subPath: index.html
-        volumes:
-        - configMap:
-            defaultMode: 420
-            name: {{.Values.default.images.name}}-{{.Values.default.subnet}}-configmap
-          name: conf
+      - name: {{.Release.Name}}
+        image: {{.Values.default.images.repository}}/{{.Values.default.images.repo}}:{{.Values.default.images.tag}}
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: {{.Values.default.images.name}}-{{.Values.addition}}-configmap
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
 ---
