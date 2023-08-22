@@ -9,8 +9,6 @@ metadata:
 spec:
   serviceName: {{.Values.default.images.name}}-{{.Values.addition}}
   replicas: 1
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
       app.kubernetes.io/name: {{.Values.default.images.name}}-{{.Values.addition}}
