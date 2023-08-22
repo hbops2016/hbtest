@@ -16,4 +16,3 @@ data:
   {{- if eq .Values.regionCompliance "region-picol" }}
   ENV: "test_picol"
   {{- end }}
-
