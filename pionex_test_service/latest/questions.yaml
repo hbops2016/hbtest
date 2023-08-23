@@ -1,0 +1,58 @@
+categories:
+- TokyoFund
+questions:
+- variable: newversion.enabled
+  default: false
+  description: "Use default Docker image: <651538853910.dkr.ecr.us-west-2.amazonaws.com/pionex-test-service:20200812.169-0d50c6f-master>"
+  label: Whether to enable grayscale upgrade
+  type: boolean
+  show_subquestion_if: true
+  group: "Grayscale upgrade"
+  subquestions:
+  - variable: default.images.tag
+    default: "20200812.169-0d50c6f-master"
+    description: "image: <651538853910.dkr.ecr.us-west-2.amazonaws.com/pionex-test-service:20200812.169-0d50c6f-master>"
+    type: enum
+    options:
+     - "20200812.169-0d50c6f-master"
+    label: Images Tag
+  - variable: default.weight
+    default: 100
+    description: "V1 Server weight"
+    type: int
+    label: V1 Server weight
+  - variable: newversion.images.tag
+    default: "20200812.169-0d50c6f-master"
+    type: string
+    description: "New Version Server Image Tag"
+    label: New Version Image Tag
+  - variable: newversion.weight
+    default: 0
+    description: "V2 Server weight "
+    type: int
+    label: V2 Server weight
+- variable: addition
+  group: "addition"
+  default: "main"
+  describe: Addition variable for different env
+  label: Addition variable for different env
+  type: enum
+  options:
+   - "main"
+- variable: regionCompliance
+  default: "region-pionex"
+  describe: Region variable for different env
+  label: Region variable for different env
+  type: enum
+  options:
+   - "region-pionex"
+   - "region-us"
+   - "region-picol"
+- variable: gray
+  default: "gray-v2"
+  describe: Region variable for different env
+  label: Region variable for different env
+  type: enum
+  options:
+   - "gray-v1"
+   - "gray-v2"
