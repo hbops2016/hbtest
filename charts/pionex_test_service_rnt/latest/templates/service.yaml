@@ -1,0 +1,17 @@
+---
+# Source: fund-counter-core/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.default.images.name}}-{{.Values.addition}}
+  labels:
+    app.kubernetes.io/name: {{.Values.default.images.name}}-{{.Values.addition}}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{.Values.default.images.name}}-{{.Values.addition}}

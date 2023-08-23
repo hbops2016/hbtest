@@ -1,0 +1,20 @@
+---
+{{- if eq .Values.gray "gray-v1" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.default.images.name}}-{{.Values.addition}}
+  labels:
+    app: {{.Values.default.images.name}}-{{.Values.addition}}
+    service: {{.Values.default.images.name}}-{{.Values.addition}}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: {{.Values.default.images.name}}-{{.Values.addition}}
+---
+{{- end }}
